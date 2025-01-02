@@ -1,0 +1,36 @@
+server:
+  port: 9000
+
+spring:
+  profiles:
+    active: local
+
+logging:
+  level:
+    org.springframework.sql: debug
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-h2.sql
+      data-locations: classpath:data-h2.sql
+  datasource:
+    url: jdbc:h2:mem:data
+    username: root
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+  logging:
+    level:
+      org: info
+      com: off
+
+
